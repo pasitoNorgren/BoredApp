@@ -9,19 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
+    @IBOutlet weak var activityCardView: CardView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
-    func setup() {
-        
+        super.viewDidAppear(true)
     }
 
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -31,6 +26,5 @@ class ViewController: UIViewController {
     @IBAction func updateButtonPressed(_ sender: UIButton) {
         print("update button pressed")
     }
-    
 }
 
