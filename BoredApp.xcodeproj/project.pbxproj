@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5811CB6C26FB74430040225F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5811CB6B26FB74430040225F /* CardView.swift */; };
 		5811CB6F26FB79110040225F /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5811CB6E26FB79110040225F /* CardView.xib */; };
+		58872B0F26FCE829001BF698 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58872B0E26FCE829001BF698 /* SettingsViewController.swift */; };
 		58AE5E9326FA1A5700094A4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE5E9226FA1A5700094A4C /* AppDelegate.swift */; };
 		58AE5E9526FA1A5700094A4C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE5E9426FA1A5700094A4C /* SceneDelegate.swift */; };
 		58AE5E9726FA1A5700094A4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AE5E9626FA1A5700094A4C /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		5811CB6B26FB74430040225F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5811CB6E26FB79110040225F /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		58872B0E26FCE829001BF698 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		58AE5E8F26FA1A5700094A4C /* BoredApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoredApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58AE5E9226FA1A5700094A4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58AE5E9426FA1A5700094A4C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				58C84E4426FA879C006292F1 /* UIView+Extension.swift */,
 				5811CB6B26FB74430040225F /* CardView.swift */,
 				5811CB6E26FB79110040225F /* CardView.xib */,
+				58872B0E26FCE829001BF698 /* SettingsViewController.swift */,
 			);
 			path = BoredApp;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				58C84E4526FA879C006292F1 /* UIView+Extension.swift in Sources */,
 				58AE5E9526FA1A5700094A4C /* SceneDelegate.swift in Sources */,
 				5811CB6C26FB74430040225F /* CardView.swift in Sources */,
+				58872B0F26FCE829001BF698 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
