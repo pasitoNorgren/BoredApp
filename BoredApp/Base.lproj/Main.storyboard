@@ -435,10 +435,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXF-Jd-CEe">
-                                <rect key="frame" x="77" y="416" width="166" height="30"/>
+                                <rect key="frame" x="77" y="416" width="166" height="40"/>
                                 <color key="backgroundColor" name="sliderTint"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="cmw-tO-z58">
+                                    <constraint firstAttribute="height" constant="40" id="cmw-tO-z58">
                                         <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                                     </constraint>
                                 </constraints>
@@ -447,7 +447,7 @@
                                     <color key="titleColor" name="mainBackground"/>
                                 </state>
                                 <connections>
-                                    <action selector="dismissing:" destination="hZP-HB-ArK" eventType="touchUpInside" id="aFk-MZ-sNM"/>
+                                    <action selector="applyChangesPressed:" destination="hZP-HB-ArK" eventType="touchUpInside" id="aFk-MZ-sNM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -483,7 +483,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dismissButton" destination="JXF-Jd-CEe" id="U3h-iO-bqi"/>
+                        <outlet property="applyCnangesButton" destination="JXF-Jd-CEe" id="U3h-iO-bqi"/>
                         <outlet property="participantsCountLabel" destination="hvi-5h-sTT" id="U8j-gh-ETd"/>
                         <outletCollection property="typeButtons" destination="zCw-rA-9qc" collectionClass="NSMutableArray" id="ymC-pl-1Zb"/>
                         <outletCollection property="typeButtons" destination="LGs-EA-CbR" collectionClass="NSMutableArray" id="UcF-Uv-KZE"/>
