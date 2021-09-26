@@ -17,12 +17,17 @@ class Coordinator : Mediator {
     
     func notify(requestType: RequestType, filteredModel : FilteredContent? = nil) {
         let url = URLGenerator(for: requestType, model: filteredModel).generateURL()
-        let network = NetworkCall(for: delegate, accordingTo: url).getData()
+        if let safeDelegate = delegate { safeDelegate.filterSettingsSetup(with: filteredModel) }
+        let handler = DataHandler(ex: delegate)
+        let _ = NewNetworkCall(handler: handler).fetchRequest(with: url!) {
+            handler.getDataFromNet()
+        }
     }
 }
 
 protocol Executor {
-    func okay(content : Content?)
+    func okay(content : Content?, errorString : String?)
+    func filterSettingsSetup(with model : FilteredContent?)
 }
 
 protocol Mediator {
@@ -73,7 +78,7 @@ struct Interpreter {
         case "Cooking" : return .cooking
         case "Relaxation" : return .relaxation
         case "Music" : return .music
-        case "Busywork"  : return .busywork
+        case "Busy work"  : return .busywork
         default : return .all
         }
     }
