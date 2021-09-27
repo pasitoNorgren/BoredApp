@@ -55,12 +55,13 @@ class SettingsViewController: UIViewController {
         guard let chosenButton = sender else { return }
         guard let buttonTitleText = chosenButton.titleLabel?.text else { return }
         guard let participNumber = participantsCountLabel.text else { return }
-        let typeRawValue = Interpreter.representation(OfActivityType: buttonTitleText).rawValue
+        let buttonType = Interpreter.representation(OfActivityType: buttonTitleText)
+        let result = Interpreter.requestShaper(buttonActivityType: buttonType,
+                                               participantsTitle: participNumber,
+                                               priceIsEnabled: priceSwitchValue)
         
-        Coordinator.shared.notify(requestType: .filteredActivity,
-                                  filteredModel: FilteredContent(type: typeRawValue,
-                                                                 participants: participNumber,
-                                                                 price: priceSwitchValue))
+        Coordinator.shared.notify(requestType: result.requestType,
+                                  filteredModel: result.model)
         
     }
     
@@ -69,7 +70,11 @@ class SettingsViewController: UIViewController {
     }
     
     func participantsCount( _ sender : UIStepper) {
-        participantsCountLabel.text = String(Int(sender.value))
+        if sender.value == 0 {
+            participantsCountLabel.text = "Randomly"
+        } else {
+            participantsCountLabel.text = String(Int(sender.value))
+        }
     }
     
     func currentlyChosenButtonSetup(_ sender : UIButton) {

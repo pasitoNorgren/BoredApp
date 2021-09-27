@@ -16,17 +16,19 @@ class Coordinator : Mediator {
     private init() {}
     
     func notify(requestType: RequestType, filteredModel : FilteredContent? = nil) {
-        let url = URLGenerator(for: requestType, model: filteredModel).generateURL()
-        if let safeDelegate = delegate { safeDelegate.filterSettingsSetup(with: filteredModel) }
-        let handler = DataHandler(ex: delegate)
-        let _ = NewNetworkCall(handler: handler).fetchRequest(with: url!) {
+        guard let url = URLGenerator(for: requestType, model: filteredModel).generateURL() else { return }
+        guard let safeDelegate = delegate else { return }
+        
+        safeDelegate.filterSettingsSetup(with: filteredModel)
+        let handler = DataHandler(executor: safeDelegate)
+        let _ = NetworkCall(handler: handler).fetchRequest(with: url) {
             handler.getDataFromNet()
         }
     }
 }
 
 protocol Executor {
-    func okay(content : Content?, errorString : String?)
+    func performsAction(content : Content?, errorString : String?)
     func filterSettingsSetup(with model : FilteredContent?)
 }
 
@@ -41,7 +43,7 @@ enum RequestType {
 
 struct FilteredContent {
     let type : String
-    let participants : String
+    let participants : String?
     let price : Bool
 }
 
@@ -68,6 +70,21 @@ enum ActivityType : String {
 }
 
 struct Interpreter {
+    
+    static func getCardViewTypeName(type : String) -> String {
+        
+        var outputString = String()
+                
+        if type.count > 0 {
+            if type == ActivityType.busywork.rawValue {
+                outputString = "Busy work"
+            } else {
+                outputString = String(type.prefix(1).capitalized) + String(type.suffix(type.count - 1).lowercased())
+            }
+        }
+        return outputString
+    }
+    
     static func representation(OfActivityType : String) -> ActivityType {
         switch OfActivityType {
         case "Education" : return .education
@@ -81,6 +98,35 @@ struct Interpreter {
         case "Busy work"  : return .busywork
         default : return .all
         }
+    }
+    
+    static func requestShaper(buttonActivityType : ActivityType, participantsTitle : String, priceIsEnabled : Bool) -> (requestType : RequestType, model : FilteredContent? ) {
+        
+        var intermediateRequestType : RequestType = .randomActivity
+        var intermediateContent : FilteredContent?
+        var shouldPayAttentionToParticipantsCount = true
+        
+        if let _ = Int(participantsTitle) {
+            shouldPayAttentionToParticipantsCount = true
+        } else {
+            shouldPayAttentionToParticipantsCount = false
+        }
+        
+        if  ((buttonActivityType == .all) &&
+            (priceIsEnabled == true) &&
+            (shouldPayAttentionToParticipantsCount == false)) {
+            intermediateRequestType = .randomActivity
+            intermediateContent = nil
+        } else if shouldPayAttentionToParticipantsCount == false {
+            intermediateRequestType = .filteredActivity
+            intermediateContent = FilteredContent(type: buttonActivityType.rawValue, participants: nil, price: priceIsEnabled)
+        } else if shouldPayAttentionToParticipantsCount == true {
+            intermediateRequestType = .filteredActivity
+            intermediateContent = FilteredContent(type: buttonActivityType.rawValue, participants: participantsTitle, price: priceIsEnabled)
+        }
+        
+        return (intermediateRequestType, intermediateContent)
+        
     }
 }
 

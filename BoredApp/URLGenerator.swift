@@ -27,18 +27,19 @@ struct URLGenerator {
         }
         if requestType == .filteredActivity {
             outputURLString = basicURLString
-            if let model = filteredModel {
-                outputURLString += "participants=\(model.participants)&"
-                if model.type != ActivityType.all.rawValue {
-                    outputURLString += "type=\(model.type)&"
+            if let safeModel = filteredModel {
+                if safeModel.type != ActivityType.all.rawValue {
+                    outputURLString += "type=\(safeModel.type)&"
                 }
-                if !model.price {
-                    outputURLString += "price=0"
+                if safeModel.price == false {
+                    outputURLString += "price=0&"
+                }
+                if let safeParticioants = safeModel.participants {
+                    outputURLString += "participants=\(safeParticioants)&"
                 }
             }
         }
         if let outputURL = URL(string: outputURLString) {
-            print(outputURL)
             return outputURL
         } else {
             return nil

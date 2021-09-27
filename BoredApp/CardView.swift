@@ -11,13 +11,14 @@ import UIKit
 
 class CardView : UIView {
     
-    @IBOutlet weak var activityTypeLabel: UILabel!
-    @IBOutlet weak var activityTypeView: UIView!
-    @IBOutlet weak var generalTextLabel: UILabel!
-    @IBOutlet weak var favorImageView: UIImageView!
+    @IBOutlet weak var activityTypeLabel: UILabel?
+    @IBOutlet weak var activityTypeView: UIView?
+    @IBOutlet weak var generalTextLabel: UILabel?
+    @IBOutlet weak var favorImageView: UIImageView?
+    @IBOutlet weak var participantsLabel: UILabel?
+    @IBOutlet weak var priceLabel: UILabel?
     
-    
-    var viewFromXib : UIView!
+    var viewFromXib : UIView?
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -26,33 +27,22 @@ class CardView : UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        viewFromXib.frame = bounds
-        addSubview(viewFromXib)
+        guard let safeViewFromXib = viewFromXib else { return }
+        safeViewFromXib.frame = bounds
+        addSubview(safeViewFromXib)
         self.layoutIfNeeded()
-        testRounding()
+        apperanceSetup()
     }
     
-    func testRounding() {
+    func apperanceSetup() {
         self.round(by: 20.0, theseCorners: [.allCorners])
-        self.activityTypeView.round(by: 20.0, theseCorners: [.bottomRight])
-        generalTextLabel.adjustsFontSizeToFitWidth = true
-        generalTextLabel.minimumScaleFactor = 0.2
-    }
-
-    @IBAction func favorButtonPressed(_ sender: UIButton) {
-        if favorImageView.image == UIImage(systemName: "star") {
-            favorImageView.image = UIImage(systemName: "star.fill")
-            UIView.animate(withDuration: 1) {
-                self.favorImageView.tintColor = .systemYellow
-            }
-           
-        } else {
-            favorImageView.image = UIImage(systemName: "star")
-            favorImageView.tintColor = UIColor(named: "sliderTint")
-        }
+        self.activityTypeView?.round(by: 20.0, theseCorners: [.bottomRight])
+        generalTextLabel?.adjustsFontSizeToFitWidth = true
+        generalTextLabel?.minimumScaleFactor = 0.2
+        favorImageView?.isHidden = true
     }
     
     func nibSetup() {
-        viewFromXib = Bundle.main.loadNibNamed("CardView", owner: self, options: nil)![0] as! UIView
+        viewFromXib = Bundle.main.loadNibNamed("CardView", owner: self, options: nil)?[0] as? UIView
     }
 }
