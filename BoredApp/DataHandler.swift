@@ -33,13 +33,15 @@ class DataHandler : CanWorkWithNetworkResponse {
     }
     
     func getDataFromNet() {
-        var errorString : String? = "Something is going wrong in the cloud"
+        var errorString : String? = String()
+        var errType : ErrorType = .networkConnection
         let error = errorHandling(error: networkError)
         
         // если пришла ошибка, то не парсю данные в принципе, отправляю сообщение об ошибке в алерт
         if error != nil {
             errorString = error
-            responseResult(info: errorString)
+            errType = .networkConnection
+            responseResult(info: AlertInfo(errorType: errType, errorDescriprion: errorString))
             return
         }
 
@@ -55,11 +57,17 @@ class DataHandler : CanWorkWithNetworkResponse {
                 // который не предполагался
                 errorFound = true
                 errorString = safeData.errorDescription
+                errType = .parsing
             }
-        } else { errorFound = true }
+        } else {
+            errorFound = true
+            errorString = "Something is going wrong in the cloud"
+            errType = .noDataFromServer
+        }
         
         if errorFound {
-            responseResult(info: errorString)
+//            responseResult(info: errorString)
+            responseResult(info: AlertInfo(errorType: errType, errorDescriprion: errorString))
         } else {
             responseResult(about: modelToSend)
         }
@@ -72,8 +80,8 @@ class DataHandler : CanWorkWithNetworkResponse {
         guard let safeData = data else { return nil }
         return Parser.parseJSON(with: safeData)
     }
-    func responseResult(about model : Content? = nil, info description : String? = nil) {
-        executor.performsAction(content: model, errorString: description)
+    func responseResult(about model : Content? = nil, info description : AlertInfo? = nil) {
+        executor.performsAction(content: model, errorDescription: description)
     }
 
 }

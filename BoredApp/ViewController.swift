@@ -71,13 +71,12 @@ class ViewController: UIViewController {
 
 extension ViewController : Executor {
     
-    func performsAction(content: Content?, errorString : String?) {
+    func performsAction(content: Content?, errorDescription : AlertInfo?) {
         animateArrowImageView(startPoint: arrowImageView.alpha, endPoint: 1, duration: 0.1)
         if let safeContent = content {
             activityCardUpdateWithAnimation(with: safeContent)
         } else {
-            //тут высветим алерт
-            print("printed here \(errorString)")
+            guard let description = errorDescription else { return }
         }
        
     }

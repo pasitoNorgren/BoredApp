@@ -28,7 +28,7 @@ class Coordinator : Mediator {
 }
 
 protocol Executor {
-    func performsAction(content : Content?, errorString : String?)
+    func performsAction(content : Content?, errorDescription : AlertInfo?)
     func filterSettingsSetup(with model : FilteredContent?)
 }
 
@@ -52,6 +52,17 @@ struct Content : Codable {
     let type : String
     let participants : Int
     let price : Double
+}
+
+enum ErrorType : String {
+    case networkConnection = "Check my internet connection"
+    case parsing = "Change my filter settings"
+    case noDataFromServer = "Server is in trouble, ok"
+}
+
+struct AlertInfo {
+    let errorType : ErrorType
+    let errorDescriprion : String?
 }
 
 enum ActivityType : String {
