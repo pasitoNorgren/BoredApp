@@ -61,7 +61,7 @@ class DataHandler : CanWorkWithNetworkResponse {
             }
         } else {
             errorFound = true
-            errorString = "Something is going wrong in the cloud"
+            errorString = K.noDataText
             errType = .noDataFromServer
         }
         

@@ -43,6 +43,6 @@ class CardView : UIView {
     }
     
     func nibSetup() {
-        viewFromXib = Bundle.main.loadNibNamed("CardView", owner: self, options: nil)?[0] as? UIView
+        viewFromXib = Bundle.main.loadNibNamed(K.cardViewXibName, owner: self, options: nil)?[0] as? UIView
     }
 }

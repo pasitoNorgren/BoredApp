@@ -12,9 +12,17 @@ class SettingsViewController: UIViewController {
     @IBOutlet var typeButtons: [UIButton]!
     @IBOutlet weak var participantsCountLabel: UILabel!
     @IBOutlet weak var applyCnangesButton: UIButton!
+    @IBOutlet weak var priceSwitch: UISwitch!
+    @IBOutlet weak var stepperOutlet: UIStepper!
     var priceSwitchValue : Bool = true
     var currentlyChosenButton : UIButton?
     
+    var currentFilterSettings : FilteredContent?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        implementcurrentlyChosenFilterParamaters()
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -39,6 +47,39 @@ class SettingsViewController: UIViewController {
     
     @IBAction func typeButtonPressed(_ sender: UIButton) {
         currentlyChosenButtonSetup(sender)
+    }
+}
+
+
+
+extension SettingsViewController {
+    
+    func implementcurrentlyChosenFilterParamaters() {
+        guard let safeSettings = currentFilterSettings else { return }
+        priceSwitch.setOn(safeSettings.price, animated: false)
+        if let safeParticipantsLabel = safeSettings.participants {
+            participantsCountLabel.text = safeParticipantsLabel
+            guard let safeValueForStepper = Double(safeParticipantsLabel) else { return }
+            stepperOutlet.value = safeValueForStepper
+            
+        } else {
+            participantsCountLabel.text = K.SettingsVC.participantsCountLabelForRandom
+            stepperOutlet.value = 0
+        }
+        findButtonToChoose(with: safeSettings.type)
+    }
+    
+    func findButtonToChoose(with title : String) {
+        let normalButtonTitleText = Interpreter.getCardViewTypeName(type: title)
+        for btn in typeButtons {
+            if normalButtonTitleText == btn.titleLabel?.text {
+                currentlyChosenButton = btn
+                break
+            }
+        }
+        guard let safeCurrentlyChosenButton = currentlyChosenButton else { return }
+        currentlyChosenButtonSetup(safeCurrentlyChosenButton, fromViewDidLoad: true)
+        
     }
     
     func buttonsCornersRounding() {
@@ -71,14 +112,16 @@ class SettingsViewController: UIViewController {
     
     func participantsCount( _ sender : UIStepper) {
         if sender.value == 0 {
-            participantsCountLabel.text = "Randomly"
+            participantsCountLabel.text = K.SettingsVC.participantsCountLabelForRandom
         } else {
             participantsCountLabel.text = String(Int(sender.value))
         }
     }
     
-    func currentlyChosenButtonSetup(_ sender : UIButton) {
-        currentlyChosenButton = ((currentlyChosenButton == nil) || (currentlyChosenButton != sender)) ? sender : nil
+    func currentlyChosenButtonSetup(_ sender : UIButton, fromViewDidLoad index : Bool = false) {
+        if !index {
+            currentlyChosenButton = ((currentlyChosenButton == nil) || (currentlyChosenButton != sender)) ? sender : nil
+        }
         transparencyControl(for: currentlyChosenButton)
         applyChangesButtonTitle(according: currentlyChosenButton)
     }
@@ -101,9 +144,11 @@ class SettingsViewController: UIViewController {
     func applyChangesButtonTitle(according button : UIButton?) {
         var buttonTitle = String()
         if let _ = button {
-            buttonTitle = "Apply changes"
+            buttonTitle = K.SettingsVC.dismissButtonSuccess
+            applyCnangesButton.backgroundColor = UIColor.systemGreen
         } else {
-            buttonTitle = "Dismiss the window"
+            buttonTitle = K.SettingsVC.dismissButtonFail
+            applyCnangesButton.backgroundColor = UIColor.systemRed
         }
         applyCnangesButton.setTitle(buttonTitle, for: .normal)
     }

@@ -13,7 +13,7 @@ struct URLGenerator {
     let requestType : RequestType
     let filteredModel : FilteredContent?
     
-    let basicURLString : String = "https://www.boredapi.com/api/activity?"
+    let basicURLString : String = K.basicUrlOfBoredAPI
     
     init(for type : RequestType, model filteredModel : FilteredContent?) {
         self.requestType = type

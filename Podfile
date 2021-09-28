@@ -6,6 +6,6 @@ target 'BoredApp' do
   use_frameworks!
 
   # Pods for BoredApp
-  
+  pod "CDAlertView"
 
 end

@@ -36,7 +36,6 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                         <connections>
                                                             <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z5c-oU-AGn"/>
-                                                            <segue destination="hZP-HB-ArK" kind="presentation" id="6WW-7Y-KPH"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -106,9 +105,9 @@
                                                 <rect key="frame" x="110" y="0.0" width="100" height="90"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QCq-M7-smE" userLabel="arrowClockwise">
-                                                        <rect key="frame" x="0.0" y="7" width="100" height="68"/>
+                                                        <rect key="frame" x="0.0" y="13.5" width="100" height="64"/>
                                                         <color key="tintColor" name="sliderTint"/>
-                                                        <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="small" renderingMode="template"/>
+                                                        <imageReference key="image" image="arrow.triangle.2.circlepath" catalog="system" symbolScale="small" renderingMode="template"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="100" scale="small"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esn-Bg-pwW">
@@ -162,6 +161,7 @@
                     <connections>
                         <outlet property="activityCardView" destination="QoE-AO-6Nc" id="tJ4-cn-GrI"/>
                         <outlet property="arrowImageView" destination="QCq-M7-smE" id="6lR-fO-yJS"/>
+                        <segue destination="hZP-HB-ArK" kind="presentation" identifier="VCtoSVC" id="dTX-gW-J8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -437,7 +437,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXF-Jd-CEe">
                                 <rect key="frame" x="77" y="416" width="166" height="40"/>
-                                <color key="backgroundColor" name="sliderTint"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cmw-tO-z58">
                                         <variation key="heightClass=regular-widthClass=regular" constant="60"/>
@@ -445,7 +445,7 @@
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <state key="normal" title="Dismiss the window">
-                                    <color key="titleColor" name="mainBackground"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="applyChangesPressed:" destination="hZP-HB-ArK" eventType="touchUpInside" id="aFk-MZ-sNM"/>
@@ -486,6 +486,8 @@
                     <connections>
                         <outlet property="applyCnangesButton" destination="JXF-Jd-CEe" id="U3h-iO-bqi"/>
                         <outlet property="participantsCountLabel" destination="hvi-5h-sTT" id="U8j-gh-ETd"/>
+                        <outlet property="priceSwitch" destination="Oyu-NA-13a" id="h64-UE-AcQ"/>
+                        <outlet property="stepperOutlet" destination="QrC-V9-UQG" id="khM-sN-P5h"/>
                         <outletCollection property="typeButtons" destination="zCw-rA-9qc" collectionClass="NSMutableArray" id="ymC-pl-1Zb"/>
                         <outletCollection property="typeButtons" destination="LGs-EA-CbR" collectionClass="NSMutableArray" id="UcF-Uv-KZE"/>
                         <outletCollection property="typeButtons" destination="H4V-2P-jaj" collectionClass="NSMutableArray" id="r3f-0L-Ql1"/>
@@ -504,7 +506,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <namedColor name="mainBackground">
             <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -514,6 +516,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
