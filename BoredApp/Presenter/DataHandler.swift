@@ -66,7 +66,6 @@ class DataHandler : CanWorkWithNetworkResponse {
         }
         
         if errorFound {
-//            responseResult(info: errorString)
             responseResult(info: AlertInfo(errorType: errType, errorDescriprion: errorString))
         } else {
             responseResult(about: modelToSend)

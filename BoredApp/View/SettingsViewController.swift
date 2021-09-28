@@ -29,9 +29,6 @@ class SettingsViewController: UIViewController {
         buttonsCornersRounding()
     }
     
-    deinit {
-        print("deinited")
-    }
     
     @IBAction func applyChangesPressed(_ sender: UIButton) {
         applyChangesButtonBehaviour(currentlyChosenButton)
