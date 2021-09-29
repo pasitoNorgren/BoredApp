@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        implementcurrentlyChosenFilterParamaters()
+        implementCurrentlyChosenFilterParamaters()
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,9 +51,10 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     
-    func implementcurrentlyChosenFilterParamaters() {
+    func implementCurrentlyChosenFilterParamaters() {
         guard let safeSettings = currentFilterSettings else { return }
         priceSwitch.setOn(safeSettings.price, animated: false)
+        priceSwitchValue = safeSettings.price
         if let safeParticipantsLabel = safeSettings.participants {
             participantsCountLabel.text = safeParticipantsLabel
             guard let safeValueForStepper = Double(safeParticipantsLabel) else { return }
