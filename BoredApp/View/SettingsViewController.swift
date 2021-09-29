@@ -47,8 +47,6 @@ class SettingsViewController: UIViewController {
     }
 }
 
-
-
 extension SettingsViewController {
     
     func implementCurrentlyChosenFilterParamaters() {
@@ -77,7 +75,6 @@ extension SettingsViewController {
         }
         guard let safeCurrentlyChosenButton = currentlyChosenButton else { return }
         currentlyChosenButtonSetup(safeCurrentlyChosenButton, fromViewDidLoad: true)
-        
     }
     
     func buttonsCornersRounding() {
@@ -101,7 +98,6 @@ extension SettingsViewController {
         
         Coordinator.shared.notify(requestType: result.requestType,
                                   filteredModel: result.model)
-        
     }
     
     func switchValueSetting(_ sender : UISwitch) {
