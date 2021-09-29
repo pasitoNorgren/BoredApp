@@ -9,21 +9,21 @@ import Foundation
 
 
 struct K {
-    // Segue Identifier from ViewController to SettingsViewController
+    
     static let VCtoSVCsegueIdentifier = "VCtoSVC"
     
-    // Colour name of top right slider imageView at ViewController
+    
     static let sliderTintColourName = "sliderTint"
     
-    // Colour name of ViewController background
+    
     static let mainBackgroundColourName = "mainBackground"
     
-    // Main title of CDAlertView
+    
     static let mainAlertTitle = "Oops, error occured"
     
     static let cardViewXibName = "CardView"
     
-    // Data from server is nil description
+
     static let noDataText = "Something is going wrong in the cloud"
     
     static let basicUrlOfBoredAPI = "https://www.boredapi.com/api/activity?"

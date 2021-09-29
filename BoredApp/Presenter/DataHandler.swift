@@ -37,7 +37,7 @@ class DataHandler : CanWorkWithNetworkResponse {
         var errType : ErrorType = .networkConnection
         let error = errorHandling(error: networkError)
         
-        // если пришла ошибка, то не парсю данные в принципе, отправляю сообщение об ошибке в алерт
+        // 
         if error != nil {
             errorString = error
             errType = .networkConnection
@@ -49,12 +49,10 @@ class DataHandler : CanWorkWithNetworkResponse {
         var errorFound : Bool = false
         var modelToSend : Content? = nil
       
-        if let safeData = data {   // если по каким-то причинам даты вообще нет
+        if let safeData = data {
             if let model = safeData.model {
                 modelToSend = model
             } else {
-                // если данные есть, но их невозможно распарсить, пришел ответ,
-                // который не предполагался
                 errorFound = true
                 errorString = safeData.errorDescription
                 errType = .parsing
