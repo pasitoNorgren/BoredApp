@@ -29,3 +29,19 @@ To generate random activity in filter settings choose "All" button type, number 
 ##### iPhone/iPad landscape support
 
 ![ipadLandscapeGif](https://user-images.githubusercontent.com/82877037/135292646-8dafc8c9-9dc0-45b3-a96f-010db4d8961e.gif)
+
+##### Warning alert
+
+If there is no data that corresponds to filter settings
+
+![warningErrorGif](https://user-images.githubusercontent.com/82877037/135314700-a3f4181d-2753-4339-9f32-19058e54e5b3.gif)
+
+##### Error alert
+
+If the Internet connection is not available
+
+![errrorAlert](https://user-images.githubusercontent.com/82877037/135314840-c7c233fd-7243-4edb-aced-ac93c2fa6cbd.gif)
+
+
+
+
