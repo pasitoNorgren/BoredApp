@@ -11,9 +11,8 @@ import Foundation
 struct Interpreter {
     
     static func getCardViewTypeName(type : String) -> String {
-        let activityType = ActivityType(rawValue: type)
-        guard let safeActivityType = activityType else { return "" }
-        let outputString = reversalRepresentation(OfActivityType: safeActivityType)
+        guard let activityType = ActivityType(rawValue: type) else { return "" }
+        let outputString = reversalRepresentation(OfActivityType: activityType)
         return outputString
     }
     
@@ -33,8 +32,8 @@ struct Interpreter {
         }
     }
     
-    static func representation(OfActivityType : String) -> ActivityType {
-        switch OfActivityType {
+    static func representation(OfActivityType activityType: String) -> ActivityType {
+        switch activityType {
         case K.AtcivityTypes.education : return .education
         case K.AtcivityTypes.recreational : return .recreational
         case K.AtcivityTypes.social : return .social
@@ -54,10 +53,10 @@ struct Interpreter {
         var intermediateContent : FilteredContent?
         var shouldPayAttentionToParticipantsCount = true
         
-        shouldPayAttentionToParticipantsCount = Int(participantsTitle) != nil ? true : false
+        shouldPayAttentionToParticipantsCount = Int(participantsTitle) != nil
         
         if  ((buttonActivityType == .all) &&
-            (priceIsEnabled == true) &&
+            priceIsEnabled &&
             (shouldPayAttentionToParticipantsCount == false)) {
             intermediateRequestType = .randomActivity
             intermediateContent = nil
