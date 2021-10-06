@@ -30,9 +30,7 @@ class Coordinator : Mediator {
         
         safeDelegate.filterSettingsSetup(with: filteredModel)
         let handler = DataHandler(executor: safeDelegate)
-        let _ = NetworkCall(handler: handler).fetchRequest(with: url) {
-            handler.getDataFromNet()
-        }
+        let _ = NetworkCall(handler: handler).fetchRequest(with: url)
     }
 }
 

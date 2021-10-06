@@ -16,17 +16,11 @@ class NetworkCall<T : CanWorkWithNetworkResponse> {
         self.handler = handler
     }
     
-    func fetchRequest(with url : URL, complitionHandler : @escaping (() -> Void)) {
-        let group = DispatchGroup()
-        group.enter()
+    func fetchRequest(with url : URL) {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            defer { group.leave() }
             self.giveDataBack(data: data, response: response, error: error)
         }
         task.resume()
-        group.notify(queue: .main) {
-            complitionHandler()
-        }
     }
     
     func giveDataBack(data : Data?, response : URLResponse?, error : Error?) {

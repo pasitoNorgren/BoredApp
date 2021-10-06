@@ -30,6 +30,7 @@ class DataHandler : CanWorkWithNetworkResponse {
         networkData = data
         networkResponse = response
         networkError = error
+        DispatchQueue.main.async { self.getDataFromNet() }
     }
     
     func getDataFromNet() {
