@@ -8,10 +8,10 @@
 import Foundation
 
 class Parser {
-    static func parseJSON(with data : Data) -> (Content?, String?) {
+    static func parseJSON<T : Codable>(with data : Data) -> (T?, String?) {
         let decoder = JSONDecoder()
         do {
-            let model = try decoder.decode(Content.self, from: data)
+            let model = try decoder.decode(T.self, from: data)
             return (model, nil)
         } catch {
             return (nil, error.localizedDescription)
