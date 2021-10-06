@@ -79,11 +79,12 @@ extension ViewController {
         }
     }
     func activityCardUpdateWithAnimation(with model : Content) {
-        guard let safeActivityCardView = activityCardView else { return }
-        guard let safeGeneralTextLabel = safeActivityCardView.generalTextLabel else { return }
-        guard let safeActivityTypeLabel = safeActivityCardView.activityTypeLabel else { return }
-        guard let safeParticipantsLabel = safeActivityCardView.participantsLabel else { return }
-        guard let safePriceLabel = safeActivityCardView.priceLabel else { return }
+        guard let safeActivityCardView = activityCardView,
+              let safeGeneralTextLabel = safeActivityCardView.generalTextLabel,
+              let safeActivityTypeLabel = safeActivityCardView.activityTypeLabel,
+              let safeParticipantsLabel = safeActivityCardView.participantsLabel,
+              let safePriceLabel = safeActivityCardView.priceLabel
+        else { return }
         
         safeGeneralTextLabel.alpha = 0
         
