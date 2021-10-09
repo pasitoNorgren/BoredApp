@@ -88,11 +88,12 @@ extension SettingsViewController {
     
     func applyChangesButtonBehaviour(_ sender : UIButton?) {
         dismiss(animated: true, completion: nil)
-        guard let chosenButton = sender else { return }
-        guard let buttonTitleText = chosenButton.titleLabel?.text else { return }
-        guard let participNumber = participantsCountLabel.text else { return }
-        let buttonType = Interpreter.representation(OfActivityType: buttonTitleText)
-        let result = Interpreter.requestShaper(buttonActivityType: buttonType,
+        guard let chosenButton = sender,
+              let buttonTitleText = chosenButton.titleLabel?.text,
+              let participNumber = participantsCountLabel.text
+        else { return }
+        
+        let result = Interpreter.requestShaper(buttonTitle: buttonTitleText,
                                                participantsTitle: participNumber,
                                                priceIsEnabled: priceSwitchValue)
         

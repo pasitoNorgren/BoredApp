@@ -28,19 +28,6 @@ struct K {
     
     static let basicUrlOfBoredAPI = "https://www.boredapi.com/api/activity?"
     
-    struct AtcivityTypes {
-        static let education = "Education"
-        static let recreational = "Recreational"
-        static let social = "Social"
-        static let diy = "Diy"
-        static let charity = "Charity"
-        static let cooking = "Cooking"
-        static let relaxation = "Relaxation"
-        static let music = "Music"
-        static let busywork = "Busy work"
-        static let all = "All"
-    }
-    
     struct SettingsVC {
         static let participantsCountLabelForRandom = "Randomly"
         static let dismissButtonSuccess = "Apply changes"

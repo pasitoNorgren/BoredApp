@@ -90,7 +90,7 @@ extension ViewController {
         
         safeGeneralTextLabel.text = model.activity
         safeActivityTypeLabel.text = Interpreter.getCardViewTypeName(type : model.type)
-        safeActivityTypeLabel.backgroundColor = Colourist.giveMeColour(type: model.type)
+        safeActivityTypeLabel.backgroundColor = ActivityType(rawValue: model.type)?.color
         safeParticipantsLabel.text = String(model.participants)
         safePriceLabel.text = String(model.price)
         

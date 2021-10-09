@@ -25,8 +25,9 @@ class Coordinator : Mediator {
     private init() {}
     
     func notify(requestType: RequestType, filteredModel : FilteredContent? = nil) {
-        guard let url = URLGenerator(for: requestType, model: filteredModel).generateURL() else { return }
-        guard let safeDelegate = delegate else { return }
+        guard let safeDelegate = delegate,
+              let url = URLGenerator(for: requestType, model: filteredModel).generateURL()
+        else { return }
         
         safeDelegate.filterSettingsSetup(with: filteredModel)
         let handler = DataHandler(executor: safeDelegate)

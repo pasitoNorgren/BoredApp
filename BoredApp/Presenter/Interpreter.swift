@@ -12,43 +12,33 @@ struct Interpreter {
     
     static func getCardViewTypeName(type : String) -> String {
         guard let activityType = ActivityType(rawValue: type) else { return "" }
-        let outputString = reversalRepresentation(OfActivityType: activityType)
+        let outputString = representation(of: activityType)
         return outputString
     }
     
-    static func reversalRepresentation(OfActivityType : ActivityType) -> String {
+    static func representation(of activityType: ActivityType) -> String {
         
-        switch OfActivityType {
-        case .education : return K.AtcivityTypes.education
-        case .recreational : return K.AtcivityTypes.recreational
-        case .social : return K.AtcivityTypes.social
-        case .diy : return K.AtcivityTypes.diy
-        case .charity : return K.AtcivityTypes.charity
-        case .cooking : return K.AtcivityTypes.cooking
-        case .relaxation : return K.AtcivityTypes.relaxation
-        case .music : return K.AtcivityTypes.music
-        case .busywork : return K.AtcivityTypes.busywork
-        default : return K.AtcivityTypes.all
-        }
-    }
-    
-    static func representation(OfActivityType activityType: String) -> ActivityType {
         switch activityType {
-        case K.AtcivityTypes.education : return .education
-        case K.AtcivityTypes.recreational : return .recreational
-        case K.AtcivityTypes.social : return .social
-        case K.AtcivityTypes.diy : return .diy
-        case K.AtcivityTypes.charity : return .charity
-        case K.AtcivityTypes.cooking : return .cooking
-        case K.AtcivityTypes.relaxation : return .relaxation
-        case K.AtcivityTypes.music : return .music
-        case K.AtcivityTypes.busywork  : return .busywork
-        default : return .all
+        case .education : return "Education"
+        case .recreational : return "Recreational"
+        case .social : return "Social"
+        case .diy : return "Diy"
+        case .charity : return "Charity"
+        case .cooking : return "Cooking"
+        case .relaxation : return "Relaxation"
+        case .music : return "Music"
+        case .busywork : return "Busy work"
+        default : return "All"
         }
     }
     
-    static func requestShaper(buttonActivityType : ActivityType, participantsTitle : String, priceIsEnabled : Bool) -> (requestType : RequestType, model : FilteredContent? ) {
+    static func requestShaper(buttonTitle : String, participantsTitle : String, priceIsEnabled : Bool) -> (requestType : RequestType, model : FilteredContent? ) {
         
+        let buttonTitleProcessing = buttonTitle.lowercased().replacingOccurrences(of: " ", with: "")
+        var buttonActivityType : ActivityType = .all
+        if let activityType = ActivityType(rawValue: buttonTitleProcessing) {
+            buttonActivityType = activityType
+        }
         var intermediateRequestType : RequestType = .randomActivity
         var intermediateContent : FilteredContent?
         var shouldPayAttentionToParticipantsCount = true
