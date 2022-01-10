@@ -8,6 +8,9 @@ The BoredApp supports portrait mode and landscape mode. Supported device range i
 
 To generate random activity in filter settings choose "All" button type, number of participants - "Randomly", price switcher is set to 'On' . Otherwise it is going to be a filtered activity.
 
+Figma:
+https://www.figma.com/file/tPFmtgetjPiHcpRcjzhCXc/BoredApp?node-id=0%3A1
+
 ## Examples
 
 ##### Main screen activity generating
